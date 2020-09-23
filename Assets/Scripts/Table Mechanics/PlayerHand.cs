@@ -5,6 +5,9 @@ using UnityEngineInternal;
 
 public class PlayerHand: MonoBehaviour
 {
+    // Imagen de cursor para el jugador
+    public Sprite cursor;
+
     // Layer para que solo detecte al item al dar un solo click
     public LayerMask tableMask;
 
@@ -25,6 +28,11 @@ public class PlayerHand: MonoBehaviour
     //Guarda el item que selecionó
     private RaycastHit item;
 
+    private void Start()
+    {
+        //Cursor.SetCursor(cursor.texture, new Vector2(cursor.texture.width / 2, cursor.texture.height /2), CursorMode.Auto);
+    }
+
     private void Update()
     {
         // Rayo desde la camara al espacio 3d
@@ -35,8 +43,21 @@ public class PlayerHand: MonoBehaviour
             // Si seleccionó un item
             if(Physics.Raycast(ray, out item, Mathf.Infinity, itemMask))
             {
+                // Si el item está en la posición correcta, hacemos que no se pueda arrastrar
+                if (!item.transform.GetComponent<Item>().Draggable)
+                {
+                    // Borramos el item seleccionado actual
+                    item = new RaycastHit();
+
+                    // Retornamos para que no se cambien los demas valores
+                    return;
+                }
+
                 // Cambiamos el estado a item seleccionado
                 selected = true;
+
+                // Se saca el item del suelo
+                item.transform.SetParent(null);
             }
         }
 
