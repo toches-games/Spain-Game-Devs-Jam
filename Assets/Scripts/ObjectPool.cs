@@ -16,10 +16,13 @@ public class ObjectPool : MonoBehaviour
     void Start()
     {
         pooledObjects = new List<GameObject>();
-        GameObject tmp; for (int i = 0; i < amountToPool; i++)
+        GameObject tmp;
+        for (int i = 0; i < amountToPool; i++)
         {
             tmp = Instantiate(objectToPool);
-            tmp.SetActive(false); pooledObjects.Add(tmp);
+            tmp.SetActive(false);
+            tmp.transform.parent = GameObject.Find("Ghosts").transform;
+            pooledObjects.Add(tmp);
         }
     }
 
