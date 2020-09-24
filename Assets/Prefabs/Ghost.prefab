@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -131,8 +131,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8626839, y: 1.809305, z: 0.73479205}
-  m_Center: {x: -0.33, y: 0.32, z: 0}
+  m_Size: {x: 1.8626839, y: 2.2567866, z: 0.73479205}
+  m_Center: {x: -0.32999998, y: 0.54374087, z: 0}
 --- !u!54 &-5989381906476698976
 Rigidbody:
   m_ObjectHideFlags: 0

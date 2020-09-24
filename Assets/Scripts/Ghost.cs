@@ -38,6 +38,8 @@ public class Ghost : MonoBehaviour
 
     public void SetGhostState(GhostState newGhostState)
     {
+        currentGhostState = newGhostState;
+
         if (newGhostState == GhostState.generated)
         {
             target = GameManager.sharedIstance.points[Random.Range(0, GameManager.MAX_COUNT_GHOST)];
@@ -47,6 +49,7 @@ public class Ghost : MonoBehaviour
         {
             target = GameObject.Find("Player");
             velocity = Random.Range(10, 25);
+            gameObject.layer = LayerMask.NameToLayer("Ghost");
         }
         else if (newGhostState == GhostState.finish)
         {
@@ -93,5 +96,12 @@ public class Ghost : MonoBehaviour
         initialPoint.GetComponent<Point>().SetState(false);
         currentGhostState = GhostState.generated;
         velocity = 7;
+        gameObject.layer = LayerMask.NameToLayer("Default");
+
+    }
+
+    public void Damage()
+    {
+        SetGhostState(GhostState.finish);
     }
 }

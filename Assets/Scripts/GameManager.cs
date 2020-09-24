@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
             {
                 GenerateGhost(points[RandomPoint()]);
                 i++;
-                Debug.Log("Generado: " + i);
+                //Debug.Log("Generado: " + i);
             }
             yield return new WaitForSeconds(generationTime);
         }
