@@ -586,7 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2915d0a7292864691bb97eddd396bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursor: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  cursor: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
   tableMask:
     serializedVersion: 2
     m_Bits: 512
