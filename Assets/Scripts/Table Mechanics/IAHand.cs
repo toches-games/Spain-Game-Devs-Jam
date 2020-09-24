@@ -9,8 +9,8 @@ public class IAHand : MonoBehaviour
     public Image cursor;
 
     // Velocidad de desplazamiento de la ia
-    [Range(1, 5)]
-    public float speed = 3;
+    [Range(1, 8)]
+    public float speed = 8;
 
     // Referencia a las posiciones de los items sobre la mesa
     public Transform tablePositions;
@@ -81,6 +81,7 @@ public class IAHand : MonoBehaviour
                 item = draggingItem.GetChild(0).GetComponent<Rigidbody>();
                 //item.transform.SetParent(null);
                 item.transform.GetComponent<Item>().Draggable = false;
+                item.transform.GetComponent<Item>().Dragging = true;
                 draggingItem.GetComponent<BoxCollider>().enabled = true;
 
                 dragging = true;
@@ -108,7 +109,7 @@ public class IAHand : MonoBehaviour
             float distance = Vector3.Distance(transform.position, targetPosition);
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * distance * Time.deltaTime);
 
-            if (item) item.velocity = new Vector3(item.velocity.x, 0f, item.velocity.z);
+            //if (item) item.velocity = new Vector3(item.velocity.x, 0f, item.velocity.z);
 
             // Si el cursor de la ia está cerca de donde dejará al item, lo suelta
             // "Click" de la ia para soltar el objeto
@@ -116,7 +117,7 @@ public class IAHand : MonoBehaviour
             {
                 item.transform.SetParent(draggingItem);
                 item.transform.GetComponent<Item>().Draggable = true;
-                item.transform.GetComponent<Item>().Rig.isKinematic = false;
+                item.transform.GetComponent<Item>().Dragging = false;
                 item = null;
 
                 dragging = false;
@@ -130,9 +131,10 @@ public class IAHand : MonoBehaviour
         // Arrastra al item
         if (item)
         {
-            float distance = Vector3.Distance(item.position, targetPosition);
             item.velocity = new Vector3(item.velocity.x, 0f, item.velocity.z);
-            item.MovePosition(Vector3.MoveTowards(item.position, targetPosition, speed * distance * Time.deltaTime));
+            float distance = Vector3.Distance(item.position, targetPosition);
+            item.MovePosition(Vector3.MoveTowards(item.position, targetPosition, speed * distance * 0.7f * Time.deltaTime));
+            //item.MovePosition(transform.position);
         }
     }
 }

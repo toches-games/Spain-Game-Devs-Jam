@@ -6,6 +6,8 @@ public class Item : MonoBehaviour
 {
     public bool Draggable { set; get; }
 
+    public bool Dragging { set; get; }
+
     public Rigidbody Rig { private set; get; }
 
     public int Place { set; get; }
@@ -31,7 +33,6 @@ public class Item : MonoBehaviour
             {
                 incorrect = false;
                 Draggable = true;
-                Rig.isKinematic = false;
                 transform.SetParent(GroundPosition);
             }
         }
@@ -40,7 +41,7 @@ public class Item : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Si se pone en un lugar incorrecto sobre la mesa
-        if (other.CompareTag("Table Position") && other.transform.GetSiblingIndex() != Place)
+        if (other.CompareTag("Table Position") && other.transform.GetSiblingIndex() != Place && !Dragging)
         {
             incorrect = true;
             Draggable = false;
@@ -49,10 +50,9 @@ public class Item : MonoBehaviour
 
         // Si colisiona con el lugar correcto sobre la mesa, se actualiza la posición del objeto en pantalla
         // y hacemos que no se pueda arrastrar
-        if (other.CompareTag("Table Position") && Draggable)
+        if (other.CompareTag("Table Position") && !Dragging)
         {
             // Si el item está en un lugar correcto
-            Rig.isKinematic = true;
             Draggable = false;
             other.enabled = false;
             transform.position = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);

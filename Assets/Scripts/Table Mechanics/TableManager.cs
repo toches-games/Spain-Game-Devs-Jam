@@ -55,7 +55,9 @@ public class TableManager : MonoBehaviour
 
             while(targetPosition.childCount > 0) targetPosition = tablePositions.GetChild(Random.Range(0, tablePositions.childCount));
 
-            Transform itemTemp = Instantiate(item, targetPosition.position + Vector3.up, Quaternion.Euler(90, 0, 0)).transform;
+            targetPosition.GetComponent<SpriteRenderer>().sprite = item.GetComponent<SpriteRenderer>().sprite;
+
+            Transform itemTemp = Instantiate(item, targetPosition.position + Vector3.up, item.transform.rotation).transform;
             itemTemp.SetParent(targetPosition);
             itemTemp.GetComponent<Item>().Place = targetPosition.GetSiblingIndex();
         }

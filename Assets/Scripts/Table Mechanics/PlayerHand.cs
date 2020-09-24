@@ -58,11 +58,14 @@ public class PlayerHand: MonoBehaviour
 
                 // Se saca el item del suelo
                 //item.transform.SetParent(null);
+
+                // Para que no le afecte la gravedad
+                //item.rigidbody.isKinematic = true;
             }
         }
 
         // Si mantiene el click presionado y seleccionó un objeto, entonces lo arrastra
-        if(Input.GetMouseButton(0) && selected && item.rigidbody)
+        if(Input.GetMouseButton(0) && selected)
         {
             // Posición del mouse en 3d
             Vector3 mouse3D = Input.mousePosition + Vector3.forward * Camera.main.transform.position.y;
@@ -73,6 +76,9 @@ public class PlayerHand: MonoBehaviour
             // Si tiene el cursor sobre la mesa o el suelo mientras arrastra al item
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, tableMask))
             {
+                // El item se va a estar arrastrando
+                item.transform.GetComponent<Item>().Dragging = true;
+
                 // Entonces la acomoda la altura del item a la de ese suelo o mesa
                 // y se mueve de acuerdo a la posición del mouse
                 Vector3 targetPosition = new Vector3(worldPoint.x, hit.point.y + itemDistance, worldPoint.z);
@@ -80,6 +86,7 @@ public class PlayerHand: MonoBehaviour
 
                 item.rigidbody.velocity = new Vector3(item.rigidbody.velocity.x, 0f, item.rigidbody.velocity.z);
                 item.rigidbody.MovePosition(Vector3.MoveTowards(item.rigidbody.position, targetPosition, distance * speed * Time.deltaTime));
+                //item.rigidbody.MovePosition(targetPosition);
             }
         }
 
@@ -88,6 +95,15 @@ public class PlayerHand: MonoBehaviour
         {
             // Se cambia el estado a no seleccionado
             selected = false;
+
+            // Velocidad a cero para que no salga volando cuando se suelte el click
+            item.rigidbody.velocity = Vector3.zero;
+
+            // El item deja de arrastrarse
+            item.transform.GetComponent<Item>().Dragging = false;
+
+            // Para que caiga cuando se suelta
+            //item.rigidbody.isKinematic = false;
 
             // Nos aseguramos de que el item no quede seleccionado
             item = new RaycastHit();
