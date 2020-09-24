@@ -8,41 +8,131 @@ public class IAHand : MonoBehaviour
     // Imagen de cursor para la ia
     public Image cursor;
 
+    // Velocidad de desplazamiento de la ia
+    [Range(1, 5)]
+    public float speed = 3;
+
     // Referencia a las posiciones de los items sobre la mesa
     public Transform tablePositions;
 
     // Referencia a las posiciones de los items sobre el suelo
     public Transform groundPositions;
 
-    IEnumerator Start()
+    // Nos dice si la ia está arrastrando o no
+    private bool dragging;
+
+    // Guarda el item actual a arrastrar
+    private Transform draggingItem;
+
+    // Guarda la posición del item al que va arrastrar y la posición a donde va a soltar ese item
+    private Vector3 targetPosition;
+
+    private Rigidbody item;
+
+    // Regresa una posición aleatorea que contiene un item sobre la mesa, si es una posición vacia retorna nulo
+    Transform RandomTargetDragItemPosition()
     {
-        while (true)
+        Transform targetDragItemPosition = tablePositions.GetChild(Random.Range(0, tablePositions.childCount));
+
+        if (targetDragItemPosition.childCount == 0)
         {
-            Transform targetDragItemPosition = tablePositions.GetChild(Random.Range(0, tablePositions.childCount));
+            targetDragItemPosition = null;
+        }
 
-            while(targetDragItemPosition.childCount == 0)
+        return targetDragItemPosition;
+    }
+
+    // Regresa una posición aleatorea para el item en el suelo, si es una posición ocupada retorna nulo
+    Transform RandomTargetDropItemPosition()
+    {
+        Transform targetDropItemPosition = groundPositions.GetChild(Random.Range(0, groundPositions.childCount));
+
+        if (targetDropItemPosition.childCount == 1)
+        {
+            targetDropItemPosition = null;
+        }
+
+        return targetDropItemPosition;
+    }
+
+    private void Update()
+    {
+        // Si no está arrastrando algun item
+        if (!dragging)
+        {
+            // Si no hay un item para arrastrar, busca uno, no hace mas nada hasta que tenga un item para arrastrar
+            if (!draggingItem)
             {
-                targetDragItemPosition = tablePositions.GetChild(Random.Range(0, tablePositions.childCount));
-                yield return null;
+                draggingItem = RandomTargetDragItemPosition();
+                return;
             }
 
-            Transform targetDropItemPosition = groundPositions.GetChild(Random.Range(0, groundPositions.childCount));
+            // Si ya sabe que item arrastrar, se le da la posición objetivo para que se desplace hacia el item a buscar
+            else if (targetPosition != draggingItem.position) targetPosition = draggingItem.position;
 
-            while (targetDropItemPosition.childCount == 1)
+            // Movemos el cursor de la ia en el mundo 3d
+            float distance = Vector3.Distance(transform.position, targetPosition);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * distance * Time.deltaTime);
+
+            // Si el cursor de la ia está cerca del item que va arrastrar, va a comenzar a arrastrarlo
+            // "Click" de la ia para empezar a arrastrar
+            if (distance <= 0.1f && !dragging)
             {
-                targetDropItemPosition = groundPositions.GetChild(Random.Range(0, groundPositions.childCount));
-                yield return new WaitForSeconds(0.1f);
+                item = draggingItem.GetChild(0).GetComponent<Rigidbody>();
+                //item.transform.SetParent(null);
+                item.transform.GetComponent<Item>().Draggable = false;
+                draggingItem.GetComponent<BoxCollider>().enabled = true;
+
+                dragging = true;
+                draggingItem = null;
+            }
+        }
+
+        else
+        {
+            // Busca una posición para colocar el item en el suelo, y no hace mas nada hasta que haya una
+            if (!draggingItem)
+            {
+                draggingItem = RandomTargetDropItemPosition();
+                return;
             }
 
-            targetDragItemPosition.GetChild(0).SetParent(targetDropItemPosition);
-            targetDropItemPosition.GetChild(0).localPosition = new Vector3(0, 1f, 0);
+            // Si ya sabe a que posición del suelo ir, se le da la posición objetivo para que se desplace hacia el suelo
+            else if (targetPosition != draggingItem.position)
+            {
+                targetPosition = draggingItem.position + Vector3.up * 2f;
+                item.transform.GetComponent<Item>().GroundPosition = draggingItem;
+            }
 
-            cursor.rectTransform.position = RectTransformUtility.WorldToScreenPoint(Camera.main, targetDropItemPosition.GetChild(0).position);
+            // Movemos el cursor de la ia en el mundo 3d
+            float distance = Vector3.Distance(transform.position, targetPosition);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * distance * Time.deltaTime);
 
-            targetDropItemPosition.GetChild(0).GetComponent<Item>().Draggable = true;
-            targetDragItemPosition.GetComponent<BoxCollider>().enabled = true;
+            if (item) item.velocity = new Vector3(item.velocity.x, 0f, item.velocity.z);
 
-            yield return null;
+            // Si el cursor de la ia está cerca de donde dejará al item, lo suelta
+            // "Click" de la ia para soltar el objeto
+            if (distance <= 0.1f && dragging)
+            {
+                item.transform.SetParent(draggingItem);
+                item.transform.GetComponent<Item>().Draggable = true;
+                item.transform.GetComponent<Item>().Rig.isKinematic = false;
+                item = null;
+
+                dragging = false;
+                draggingItem = null;
+            }
+        }
+
+        // Movemos el cursor en pantalla dependiendo de a donde esté en el mundo 3d
+        cursor.rectTransform.position = RectTransformUtility.WorldToScreenPoint(Camera.main, transform.position);
+
+        // Arrastra al item
+        if (item)
+        {
+            float distance = Vector3.Distance(item.position, targetPosition);
+            item.velocity = new Vector3(item.velocity.x, 0f, item.velocity.z);
+            item.MovePosition(Vector3.MoveTowards(item.position, targetPosition, speed * distance * Time.deltaTime));
         }
     }
 }

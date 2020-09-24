@@ -4,15 +4,55 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [HideInInspector]
     public bool Draggable { set; get; }
+
+    public Rigidbody Rig { private set; get; }
+
+    public int Place { set; get; }
+
+    private bool incorrect;
+
+    public Transform GroundPosition{ set; private get; }
+
+    private void Awake()
+    {
+        Rig = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        // Se desplaza el item al lugar del suelo donde estaba si se pone en un lugar que no es
+        if (incorrect)
+        {
+            float distance = Vector3.Distance(GroundPosition.position, Rig.position);
+            Rig.MovePosition(Vector3.MoveTowards(Rig.position, GroundPosition.position, distance * 8f * Time.deltaTime));
+
+            if(distance <= 0.1f)
+            {
+                incorrect = false;
+                Draggable = true;
+                Rig.isKinematic = false;
+                transform.SetParent(GroundPosition);
+            }
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
+        // Si se pone en un lugar incorrecto sobre la mesa
+        if (other.CompareTag("Table Position") && other.transform.GetSiblingIndex() != Place)
+        {
+            incorrect = true;
+            Draggable = false;
+            return;
+        }
+
         // Si colisiona con el lugar correcto sobre la mesa, se actualiza la posición del objeto en pantalla
         // y hacemos que no se pueda arrastrar
-        if(other.CompareTag("Table Position"))
+        if (other.CompareTag("Table Position") && Draggable)
         {
+            // Si el item está en un lugar correcto
+            Rig.isKinematic = true;
             Draggable = false;
             other.enabled = false;
             transform.position = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);

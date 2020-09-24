@@ -20,7 +20,7 @@ public class PlayerHand: MonoBehaviour
 
     // Velocidad de desplazamiento del item seleccionado
     [Range(5, 10)]
-    public float speed = 7;
+    public float speed = 10;
 
     //Nos dice si ya seleccionó a un item o no
     private bool selected;
@@ -57,7 +57,7 @@ public class PlayerHand: MonoBehaviour
                 selected = true;
 
                 // Se saca el item del suelo
-                item.transform.SetParent(null);
+                //item.transform.SetParent(null);
             }
         }
 
