@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager sharedIstance;
-    public const int MAX_GENERATION_GHOST = 30;
+    public const int MAX_GENERATION_GHOST = 35;
     public const int MAX_COUNT_GHOST = 7;
     //Posiciones aleatorias donde generar los fantasmas
     [SerializeField]
@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     GameObject player;
     [SerializeField]
     private float generationTime;
+    public int minVelocityGhost = 10;
+    public int maxVelocityGhost = 15;
 
     private void Awake()
     {
@@ -46,10 +48,22 @@ public class GameManager : MonoBehaviour
                 GenerateGhost(points[RandomPoint()]);
                 i++;
                 //Debug.Log("Generado: " + i);
+                DifficultyController(i, 15);
             }
             yield return new WaitForSeconds(generationTime);
         }
 
+    }
+
+    public void DifficultyController(int ghostsCount, int limitForNextLevel)
+    {
+        if(ghostsCount == limitForNextLevel)
+        {
+            generationTime -= 0.5f;
+            minVelocityGhost = maxVelocityGhost;
+            maxVelocityGhost += 5;
+            limitForNextLevel += 10;
+        }
     }
 
     public int RandomPoint()

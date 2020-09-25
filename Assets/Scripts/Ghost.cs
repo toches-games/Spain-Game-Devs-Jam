@@ -48,7 +48,8 @@ public class Ghost : MonoBehaviour
         else if (newGhostState == GhostState.inPosition)
         {
             target = GameObject.Find("Player");
-            velocity = Random.Range(10, 25);
+            velocity = Random.Range(GameManager.sharedIstance.minVelocityGhost, 
+                                    GameManager.sharedIstance.maxVelocityGhost);
             gameObject.layer = LayerMask.NameToLayer("Ghost");
         }
         else if (newGhostState == GhostState.finish)
@@ -59,6 +60,7 @@ public class Ghost : MonoBehaviour
             //GameManager.sharedIstance.GenerateGhost(10,20);
             //GameManager.sharedIstance.Coroutine(Random.Range(2f, 4f), 1, 10, 20);
             ResetGameObject();
+
             gameObject.SetActive(false);
         }
     }
@@ -102,6 +104,8 @@ public class Ghost : MonoBehaviour
 
     public void Damage()
     {
-        SetGhostState(GhostState.finish);
+        anim.enabled = true;
+        //anim.SetTrigger("Dead");
+        anim.Play("GhostDead");
     }
 }
