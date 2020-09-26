@@ -9,7 +9,7 @@ public class TableManager : MonoBehaviour
     // Texto del timer en el canvas
     public Text timerText;
 
-    private readonly int initialTime = 60;
+    private readonly int initialTime = 30;
 
     private int currentTime;
 
@@ -27,6 +27,18 @@ public class TableManager : MonoBehaviour
 
     // Items del juego
     public GameObject[] items;
+
+    // Referencia al timeline final bueno
+    public GameObject goodOutro;
+    public GameObject goodOutroCanvas;
+
+    // Referencia al timeline final malo
+    public GameObject badOutro;
+    public GameObject badOutroCanvas;
+
+    // Referencia al canvas del juego
+    public GameObject gameCanvas;
+
 
     // Inicia el timer para el cambio de niveles
     IEnumerator Start()
@@ -118,6 +130,8 @@ public class TableManager : MonoBehaviour
     // Comprueba el estado del juego
     private void CheckGame()
     {
+        gameCanvas.SetActive(false);
+
         // Cantidad de items en la mesa
         int tableItems = CheckTable();
 
@@ -133,13 +147,15 @@ public class TableManager : MonoBehaviour
         // Gana el jugador
         else if(tableItems > groundItems)
         {
-            Debug.Log("Gana el jugador!");
+            goodOutroCanvas.SetActive(true);
+            goodOutro.SetActive(true);
         }
 
         // Gana la ia
         else
         {
-            Debug.Log("Gana la ia!");
+            badOutroCanvas.SetActive(true);
+            badOutro.SetActive(true);
         }
     }
 
