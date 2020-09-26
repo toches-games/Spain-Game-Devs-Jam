@@ -19,10 +19,11 @@ public class Ghost : MonoBehaviour
     public GameObject initialPoint;
     public GhostState currentGhostState = GhostState.generated;
     Animator anim;
+
+    public bool endAnimation;
     // Start is called before the first frame update
     void Start()
     {        
-        anim = GetComponent<Animator>();               
     }
 
     private void FixedUpdate()
@@ -32,6 +33,15 @@ public class Ghost : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(this.transform.position, target.transform.position,
                                                  velocity * Time.deltaTime);
+        }
+
+        if (endAnimation)
+        {
+            anim.applyRootMotion = true;
+        }
+        else
+        {
+            anim.applyRootMotion = false;
         }
 
     }
@@ -89,7 +99,8 @@ public class Ghost : MonoBehaviour
 
     void ResetGameObject()
     {
-        anim.enabled = true;
+        //anim.enabled = true;
+        endAnimation = false;
     }
 
     public void InitialConfig()
@@ -99,13 +110,20 @@ public class Ghost : MonoBehaviour
         currentGhostState = GhostState.generated;
         velocity = 7;
         gameObject.layer = LayerMask.NameToLayer("Default");
+        anim = GetComponent<Animator>();               
+        //anim.SetBool("Dead", false);
+
 
     }
 
     public void Damage()
     {
-        anim.enabled = true;
-        //anim.SetTrigger("Dead");
-        anim.Play("GhostDead");
+        //anim.SetBool("Dead", true);
+
+        //anim.enabled = true;
+        anim.SetTrigger("Dead");
+        currentGhostState = GhostState.finish;
+
+        //anim.Play("GhostDead");
     }
 }

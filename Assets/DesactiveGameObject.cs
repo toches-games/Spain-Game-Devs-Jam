@@ -7,6 +7,8 @@ public class DesactiveGameObject : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        //Debug.Log("Entra");
+        animator.GetComponent<Ghost>().initialPoint.GetComponent<Point>().SetState(true);
         animator.gameObject.SetActive(false);
     }
 

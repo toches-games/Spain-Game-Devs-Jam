@@ -101,6 +101,7 @@ MonoBehaviour:
   velocity: 7
   initialPoint: {fileID: 0}
   currentGhostState: 0
+  endAnimation: 0
 --- !u!95 &1515601289754708572
 Animator:
   serializedVersion: 3
