@@ -4,9 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - ActiveRegeneration
   - InPosition
+=======
   - Table Position
+>>>>>>> table-mechanics
   layers:
   - Default
   - TransparentFX
@@ -18,12 +21,16 @@ TagManager:
   - 
   - Ghost
   - 
+<<<<<<< HEAD
+  - 
+  - Wall
+  - Floor
+=======
   - Draggable Zone
   - Item
   - 
   - 
-  - Wall
-  - Floor
+>>>>>>> table-mechanics
   - 
   - 
   - 
