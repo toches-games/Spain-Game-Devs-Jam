@@ -9,7 +9,9 @@ public class TableManager : MonoBehaviour
     // Texto del timer en el canvas
     public Text timerText;
 
-    int timer = 60;
+    private readonly int initialTime = 60;
+
+    private int currentTime;
 
     // Referencia a la ia
     public IAHand iaHand;
@@ -26,21 +28,53 @@ public class TableManager : MonoBehaviour
     // Items del juego
     public GameObject[] items;
 
-    // Inicia el timer
+    // Inicia el timer para el cambio de niveles
     IEnumerator Start()
     {
+        currentTime = initialTime;
+
+        yield return StartCoroutine(FirstHalf());
+        DisablePlayers();
+
+        yield return new WaitForSeconds(3f);
+
+        EnablePlayers();
+        yield return StartCoroutine(SecondHalf());
+        DisablePlayers();
+
+        yield return new WaitForSeconds(1f);
+
+        CheckGame();
+    }
+
+    // Inicia el timer
+    IEnumerator FirstHalf()
+    {
+        int half = currentTime / 2;
+        
         InstantiateItems();
 
-        while (timer > 0)
+        while (currentTime >= half)
         {
-            timerText.text = timer.ToString();
-            timer--;
+            timerText.text = currentTime.ToString();
+            currentTime--;
 
             yield return new WaitForSeconds(1f);
         }
+    }
 
-        DisablePlayers();
-        CheckGame();
+    // Inicia el timer
+    IEnumerator SecondHalf()
+    {
+        currentTime = initialTime/ 2;
+
+        while (currentTime > 0)
+        {
+            timerText.text = currentTime.ToString();
+            currentTime--;
+
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     // Pone los items sobre la mesa, las posiciones en la mesa deben ser iguales o mayores que la cantidad de items
@@ -63,12 +97,22 @@ public class TableManager : MonoBehaviour
         }
     }
 
+    // Activa los jugadores para que puedan empezar a jugar
+    private void EnablePlayers()
+    {
+        iaHand.speed *= 2;
+        iaHand.enabled = true;
+
+        playerHand.enabled = true;
+        timerText.enabled = true;
+    }
+
     // Desactiva los jugadores para que no se puedan mover
     private void DisablePlayers()
     {
-        Destroy(iaHand);
-        Destroy(playerHand);
-        Destroy(timerText);
+        iaHand.enabled = false;
+        playerHand.enabled = false;
+        timerText.enabled = false;
     }
 
     // Comprueba el estado del juego

@@ -628,7 +628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursor: {fileID: 368174537}
-  speed: 6
+  speed: 3
   tablePositions: {fileID: 939819168}
   groundPositions: {fileID: 1488757310}
 --- !u!4 &664507785
