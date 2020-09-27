@@ -18,8 +18,8 @@ TagManager:
   - Ghost
   - 
   - 
-  - Wall
-  - Floor
+  - 
+  - 
   - 
   - 
   - 
@@ -45,4 +45,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 141134989
+    locked: 0
+  - name: Cinematic
+    uniqueID: 244146349
     locked: 0

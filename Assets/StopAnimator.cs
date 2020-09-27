@@ -21,6 +21,9 @@ public class StopAnimator : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        animator.applyRootMotion = true;
+        animator.gameObject.layer = LayerMask.NameToLayer("Ghost");
+
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

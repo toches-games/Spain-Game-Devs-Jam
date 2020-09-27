@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager sharedIstance;
-    public const int MAX_GENERATION_GHOST = 35;
-    public const int MAX_COUNT_GHOST = 7;
+    public const int MAX_GENERATION_GHOST = 45;
+    public const int MAX_COUNT_GHOST = 6;
+    public const float INTENSITY_DEFAULT_CIRCULO = 0.5f;
+    public const float INTENSITY_HIGHT_CIRCULO = 2f;
+    public const float INTENSITY_DEFAULT_CONO = 1f;
+    public const float INTENSITY_HIGHT_CONO = 2.5f;
     //Posiciones aleatorias donde generar los fantasmas
     [SerializeField]
     public List<GameObject> points;
@@ -15,8 +20,11 @@ public class GameManager : MonoBehaviour
     GameObject player;
     [SerializeField]
     private float generationTime;
-    public int minVelocityGhost = 10;
-    public int maxVelocityGhost = 15;
+    public int minVelocityGhost = 15;
+    public int maxVelocityGhost = 20;
+    public int limitForNextLevel = 15;
+
+    public Light2D playerLight;
 
     private void Awake()
     {
@@ -33,6 +41,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Camera.main.transform.position = new Vector3(0, 2.4f, -15f);
+        Camera.main.transform.Rotate(new Vector3(15, 0, 0));
         StartCoroutine(GenerationGhost(2f));
     }
 
@@ -47,11 +57,19 @@ public class GameManager : MonoBehaviour
             {
                 GenerateGhost(points[RandomPoint()]);
                 i++;
+
+                DifficultyController(i, limitForNextLevel);
+
                 //Debug.Log("Generado: " + i);
-                DifficultyController(i, 15);
+                //Debug.Log("generationTime: " + generationTime);
+                //Debug.Log("minVelocity: " + minVelocityGhost);
+                //Debug.Log("maxVelocity: " + maxVelocityGhost);
             }
             yield return new WaitForSeconds(generationTime);
+            //Debug.Log(i);
         }
+
+        //TODO Win
 
     }
 
@@ -62,19 +80,22 @@ public class GameManager : MonoBehaviour
             generationTime -= 0.5f;
             minVelocityGhost = maxVelocityGhost;
             maxVelocityGhost += 5;
-            limitForNextLevel += 10;
+            this.limitForNextLevel += 15;
         }
     }
 
     public int RandomPoint()
     {
-        int random = Random.Range(0, MAX_COUNT_GHOST);
-        for (int i = 0; i < MAX_COUNT_GHOST &&
-            !points[random].GetComponent<Point>().GetState(); i++)
+        int random = 0;
+
+        do
         {
             random = Random.Range(0, MAX_COUNT_GHOST);
-        }
+
+        } while (!points[random].GetComponent<Point>().GetState());
+
         return random;
+        
     }
 
     public bool CheckStatePoints()
@@ -99,8 +120,31 @@ public class GameManager : MonoBehaviour
             //ghost.transform.position = ghostInitialPosition;
             //ghost.transform.rotation = new Quaternion(0,0,0,0);
             ghost.GetComponent<Ghost>().initialPoint = initialPoint;
-            ghost.GetComponent<Ghost>().InitialConfig();
+            //ghost.GetComponent<Ghost>().InitialConfig();
+            //ghost.GetComponent<Ghost>().anim = ghost.GetComponent<Animator>();
+
+            ghost.GetComponent<Ghost>().SetGhostState(GhostState.generated);
+
             ghost.SetActive(true);
         }
     }
+
+    public void PlayerDamage()
+    {
+        StartCoroutine(DamageEffect());
+    }
+
+    IEnumerator DamageEffect()
+    {
+        for (int i = 0; i < 17; i++)
+        {
+            float alpha = player.GetComponent<SpriteRenderer>().color.a;
+            player.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, alpha - 5);
+
+            playerLight.intensity = playerLight.intensity - 0.0127f;
+
+            yield return new WaitForSeconds(1f);
+        }
+    }
+    
 }

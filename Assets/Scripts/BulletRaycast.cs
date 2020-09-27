@@ -7,15 +7,15 @@ public static class BulletRaycast {
         LayerMask mask = LayerMask.GetMask("Ghost");
         RaycastHit raycastHit;
 
-        if (Physics.Raycast(shootPosition, shootDirection, out raycastHit, range)) {
+        if (Physics.Raycast(shootPosition, shootDirection, out raycastHit, range, mask)) {
             // Hit!            
             Ghost target = raycastHit.collider.GetComponent<Ghost>();
 
-            Debug.Log(raycastHit.collider.gameObject.name);
+            //Debug.Log(raycastHit.collider.gameObject.name);
 
             if (target != null) {
                 target.Damage();
-                Debug.Log("Hit");
+                //Debug.Log("Hit");
             }
         }
 

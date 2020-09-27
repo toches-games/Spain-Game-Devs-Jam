@@ -3,16 +3,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
+
 
 public class PlayerAimWeapon : MonoBehaviour
 {
-    LightningBoltScript bolt;
+    //LightningBoltScript bolt;
+
+    public Light2D lightParent; 
+    public Light2D lightChild;
 
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
-        bolt = FindObjectOfType<LightningBoltScript>();
+        //bolt = FindObjectOfType<LightningBoltScript>();
+
     }
 
     // Update is called once per frame
@@ -38,22 +44,35 @@ public class PlayerAimWeapon : MonoBehaviour
                 target = hit.collider.GetComponent<Transform>().position;
             }
 
-            bolt.EndPosition = target;
-            StartCoroutine(ActiveBolt());
-
+            //bolt.EndPosition = target;
+            //StartCoroutine(ActiveBolt());
+            StartCoroutine(LightsChangeIntensity());
             //Debug.DrawRay(origin, target * 200, Color.green);
             Debug.DrawRay(origin, dir * 200, Color.green);
         }
 
+        IEnumerator LightsChangeIntensity()
+        {
+            
+            lightParent.intensity = GameManager.INTENSITY_HIGHT_CIRCULO;
+            lightChild.intensity = GameManager.INTENSITY_HIGHT_CONO;
+
+            yield return new WaitForSeconds(.15f);
+
+            lightParent.intensity = GameManager.INTENSITY_DEFAULT_CIRCULO;
+            lightChild.intensity = GameManager.INTENSITY_DEFAULT_CONO;
+            yield break;
+
+        }
+
+        /**
         IEnumerator ActiveBolt()
         {
             bolt.GetComponent<LineRenderer>().enabled = true;
             yield return new WaitForSeconds(.15f);
             bolt.GetComponent<LineRenderer>().enabled = false;
-
-
         }
-
+        **/
         /**
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;

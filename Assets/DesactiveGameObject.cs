@@ -8,8 +8,10 @@ public class DesactiveGameObject : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //Debug.Log("Entra");
-        animator.GetComponent<Ghost>().initialPoint.GetComponent<Point>().SetState(true);
-        animator.gameObject.SetActive(false);
+        //animator.GetComponent<Ghost>().initialPoint.GetComponent<Point>().SetState(true);
+        //animator.GetComponent<Ghost>().SetGhostState(GhostState.finish);
+        //animator.applyRootMotion = false;
+        //animator.gameObject.SetActive(false);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -19,10 +21,10 @@ public class DesactiveGameObject : StateMachineBehaviour
     //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.GetComponent<Ghost>().SetGhostState(GhostState.finish);
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

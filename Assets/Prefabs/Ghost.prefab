@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7532738900757247639, guid: 432d757d6aded144c87b770db39c7733,
+  m_Sprite: {fileID: -6359977545375631545, guid: 993c93a5489f7174f8635faf32d165e2,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -101,6 +101,8 @@ MonoBehaviour:
   velocity: 7
   initialPoint: {fileID: 0}
   currentGhostState: 0
+  anim: {fileID: 0}
+  initPosition: {x: 0, y: 0, z: 5}
   endAnimation: 0
 --- !u!95 &1515601289754708572
 Animator:
@@ -132,8 +134,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8626839, y: 2.2567866, z: 0.73479205}
-  m_Center: {x: -0.32999998, y: 0.54374087, z: 0}
+  m_Size: {x: 5, y: 5, z: 0.5}
+  m_Center: {x: 0.05, y: 0.1, z: 0}
 --- !u!54 &-5989381906476698976
 Rigidbody:
   m_ObjectHideFlags: 0
