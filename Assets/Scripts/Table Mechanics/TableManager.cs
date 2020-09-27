@@ -67,6 +67,7 @@ public class TableManager : MonoBehaviour
 
         ExplosionForce();
         yield return new WaitForSeconds(3f);
+        iaHand.speed *= 1.3f;
 
         EnablePlayers();
         yield return StartCoroutine(SecondHalf());
@@ -158,7 +159,6 @@ public class TableManager : MonoBehaviour
     // Activa los jugadores para que puedan empezar a jugar
     private void EnablePlayers()
     {
-        iaHand.speed *= 1.5f;
         iaHand.enabled = true;
 
         playerHand.enabled = true;
