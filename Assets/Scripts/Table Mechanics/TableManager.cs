@@ -40,13 +40,13 @@ public class TableManager : MonoBehaviour
     public GameObject gameCanvas;
 
     // Radio de la explosion
-    public float radius = 5;
+    private float radius = 10;
 
     // Poder de la explosion
-    private float power = 0;
+    private float power = 5f;
 
     // Fuerza hacia arriba
-    public float upForce = 1;
+    private float upForce = 1000f;
 
 
     // Inicia el timer para el cambio de niveles
@@ -54,6 +54,9 @@ public class TableManager : MonoBehaviour
     {
         currentTime = initialTime;
 
+        InstantiateItems();
+        yield return new WaitForSeconds(1f);
+        ExplosionForce();
         yield return new WaitForSeconds(2f);
 
         yield return StartCoroutine(FirstHalf());
@@ -79,9 +82,6 @@ public class TableManager : MonoBehaviour
         int half = currentTime / 2;
         SoundController.Instance.clock.Play();
         MusicController.Instance.PlayMecanic();
-
-        InstantiateItems();
-        ExplosionForce();
 
         while (currentTime >= half)
         {
