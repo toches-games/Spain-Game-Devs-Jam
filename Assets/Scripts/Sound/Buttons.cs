@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Buttons : MonoBehaviour
 {
-    public void OnMouseUpAsButton()
+    public void PlayButton()
     {
-        //SoundController.
+        SoundController.Instance.button.Play();
     }
 }

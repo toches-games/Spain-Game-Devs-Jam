@@ -40,23 +40,49 @@ class MusicController
 
     }
 
-    public void PlayLevel1()
+    public void PlayBuriel()
     {
         AllMusicGame.setParameterByName("Music", 1);
     }
 
-    public void PlayLevel2()
+    public void PlayHouse()
     {
         AllMusicGame.setParameterByName("Music", 2);
     }
 
-    public void PlayLevel3()
+    public void PlayWin1()
     {
         AllMusicGame.setParameterByName("Music", 3);
     }
 
-    public void PlayLevel4()
+    public void PlayWin2()
     {
         AllMusicGame.setParameterByName("Music", 4);
+    }
+
+    public void PlayLose()
+    {
+        AllMusicGame.setParameterByName("Music", 5);
+
+    }
+
+    public void PlayRain()
+    {
+        AllMusicGame.setParameterByName("Rain", 1);
+    }
+
+    public void StopRain()
+    {
+        AllMusicGame.setParameterByName("Rain", 0);
+    }
+
+    public void PlayMecanic()
+    {
+        AllMusicGame.setParameterByName("Ritmic", 1);
+    }
+
+    public void StopMecanic()
+    {
+        AllMusicGame.setParameterByName("Ritmic", 0);
     }
 }
