@@ -59,4 +59,9 @@ public class Item : MonoBehaviour
             transform.SetParent(other.transform);
         }
     }
+
+    // Si golpea con el suelo o mesa
+    private void OnCollisionEnter(Collision other) {
+        
+    }
 }
