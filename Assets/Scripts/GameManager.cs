@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDamage()
     {
-        StartCoroutine(DamageEffect());
+        //StartCoroutine(DamageEffect());
     }
 
     IEnumerator DamageEffect()

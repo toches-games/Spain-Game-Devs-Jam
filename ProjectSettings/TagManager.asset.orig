@@ -4,9 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - ActiveRegeneration
   - InPosition
+=======
   - Table Position
+>>>>>>> table-mechanics
   layers:
   - Default
   - TransparentFX
@@ -18,12 +21,16 @@ TagManager:
   - 
   - Ghost
   - 
+<<<<<<< HEAD
+  - 
+  - Wall
+  - Floor
+=======
   - Draggable Zone
   - Item
   - 
   - 
-  - 
-  - 
+>>>>>>> table-mechanics
   - 
   - 
   - 
@@ -49,7 +56,4 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 141134989
-    locked: 0
-  - name: Cinematic
-    uniqueID: 244146349
     locked: 0

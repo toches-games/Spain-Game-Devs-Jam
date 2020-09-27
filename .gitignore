@@ -65,3 +65,4 @@ Assets/StreamingAssets/**/*.Bank
 Assets/StreamingAssets/**/*.Bank.meta
 fmod_editor.log
 .DS_Store
+.vscode/settings.json
