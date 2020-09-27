@@ -40,13 +40,13 @@ public class TableManager : MonoBehaviour
     public GameObject gameCanvas;
 
     // Radio de la explosion
-    public float radius = 5;
+    private float radius = 10;
 
     // Poder de la explosion
-    public float power = 5;
+    private float power = 5f;
 
     // Fuerza hacia arriba
-    public float upForce = 1;
+    private float upForce = 1000f;
 
 
     // Inicia el timer para el cambio de niveles
@@ -54,11 +54,15 @@ public class TableManager : MonoBehaviour
     {
         currentTime = initialTime;
 
+        InstantiateItems();
+        yield return new WaitForSeconds(1f);
+        ExplosionForce();
         yield return new WaitForSeconds(2f);
 
         yield return StartCoroutine(FirstHalf());
         DisablePlayers();
 
+        ExplosionForce();
         yield return new WaitForSeconds(3f);
 
         EnablePlayers();
@@ -78,9 +82,6 @@ public class TableManager : MonoBehaviour
         int half = currentTime / 2;
         SoundController.Instance.clock.Play();
         MusicController.Instance.PlayMecanic();
-
-        InstantiateItems();
-        //ExplosionForce();
 
         while (currentTime >= half)
         {
@@ -110,7 +111,7 @@ public class TableManager : MonoBehaviour
         }
     }
 
-    /*private void ExplosionForce()
+    private void ExplosionForce()
     {
         Vector3 explosionPosition = transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPosition, radius);
@@ -123,7 +124,7 @@ public class TableManager : MonoBehaviour
                 rig.AddExplosionForce(power, explosionPosition, radius, upForce, ForceMode.Impulse);
             }
         }
-    }*/
+    }
 
     // Pone los items sobre la mesa, las posiciones en la mesa deben ser iguales o mayores que la cantidad de items
     // ya que es un item para cada posición, si hay menos posiciones no saldria del ciclo while ya que no encontraria
