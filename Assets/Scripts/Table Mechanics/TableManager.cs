@@ -54,8 +54,11 @@ public class TableManager : MonoBehaviour
     {
         currentTime = initialTime;
 
+        DisablePlayers();
+
         InstantiateItems();
         yield return new WaitForSeconds(1f);
+        EnablePlayers();
         ExplosionForce();
         yield return new WaitForSeconds(2f);
 
