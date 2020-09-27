@@ -27,6 +27,7 @@ public class TextAnimation : MonoBehaviour
         {
             pressF = true;
             outro.Play();
+            MusicController.Instance.PlayHouse();
 
         }
     }
