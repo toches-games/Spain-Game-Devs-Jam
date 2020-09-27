@@ -154,7 +154,7 @@ public class TableManager : MonoBehaviour
     // Activa los jugadores para que puedan empezar a jugar
     private void EnablePlayers()
     {
-        iaHand.speed *= 2;
+        iaHand.speed *= 1.5f;
         iaHand.enabled = true;
 
         playerHand.enabled = true;
