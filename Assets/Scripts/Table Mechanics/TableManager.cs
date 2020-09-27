@@ -39,11 +39,22 @@ public class TableManager : MonoBehaviour
     // Referencia al canvas del juego
     public GameObject gameCanvas;
 
+    // Radio de la explosion
+    public float radius = 5;
+
+    // Poder de la explosion
+    public float power = 5;
+
+    // Fuerza hacia arriba
+    public float upForce = 1;
+
 
     // Inicia el timer para el cambio de niveles
     IEnumerator Start()
     {
         currentTime = initialTime;
+
+        yield return new WaitForSeconds(2f);
 
         yield return StartCoroutine(FirstHalf());
         DisablePlayers();
@@ -65,6 +76,7 @@ public class TableManager : MonoBehaviour
         int half = currentTime / 2;
         
         InstantiateItems();
+        ExplosionForce();
 
         while (currentTime >= half)
         {
@@ -89,6 +101,21 @@ public class TableManager : MonoBehaviour
         }
     }
 
+    private void ExplosionForce()
+    {
+        Vector3 explosionPosition = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPosition, radius);
+
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rig = hit.GetComponent<Rigidbody>();
+
+            if(rig){
+                rig.AddExplosionForce(power, explosionPosition, radius, upForce, ForceMode.Impulse);
+            }
+        }
+    }
+
     // Pone los items sobre la mesa, las posiciones en la mesa deben ser iguales o mayores que la cantidad de items
     // ya que es un item para cada posición, si hay menos posiciones no saldria del ciclo while ya que no encontraria
     // una posición libre
@@ -104,8 +131,14 @@ public class TableManager : MonoBehaviour
             targetPosition.GetComponent<SpriteRenderer>().sprite = item.GetComponent<SpriteRenderer>().sprite;
 
             Transform itemTemp = Instantiate(item, targetPosition.position + Vector3.up, item.transform.rotation).transform;
-            itemTemp.SetParent(targetPosition);
             itemTemp.GetComponent<Item>().Place = targetPosition.GetSiblingIndex();
+            
+            // Posicion random al suelo
+            Transform targetPositionGround = groundPositions.GetChild(Random.Range(0, groundPositions.childCount));
+
+            while(targetPositionGround.childCount > 0) targetPositionGround = groundPositions.GetChild(Random.Range(0, groundPositions.childCount));
+
+            itemTemp.SetParent(targetPositionGround);
         }
     }
 
