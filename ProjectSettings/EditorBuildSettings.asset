@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Cementerio.unity
     guid: 257377b6935470a4eb4af43f4d7de30b
   - enabled: 1
-    path: Assets/Scenes/Table Mechanics.unity
+    path: Assets/Scenes/Negacion.unity
     guid: 0711c52259638e24a9d0ea8212ff9564
   - enabled: 1
     path: Assets/Scenes/Depresion.unity

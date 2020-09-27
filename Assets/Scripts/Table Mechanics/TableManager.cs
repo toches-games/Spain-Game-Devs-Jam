@@ -139,14 +139,14 @@ public class TableManager : MonoBehaviour
         int groundItems = CheckGround();
 
         // Empate
-        if(tableItems == groundItems)
+        /*if(tableItems == groundItems)
         {
-            StopCoroutine(Start());
-            StartCoroutine(Start());
-        }
+            //StopCoroutine(Start());
+            //StartCoroutine(Start());
+        }*/
 
         // Gana el jugador
-        else if(tableItems > groundItems)
+        if(tableItems >= groundItems)
         {
             goodOutroCanvas.SetActive(true);
             goodOutro.SetActive(true);
