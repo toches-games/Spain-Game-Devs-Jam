@@ -800,7 +800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16c78c02705400c40a1562a9ddaa2b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indexScene: 1
+  indexScene: 2
 --- !u!4 &429578320
 Transform:
   m_ObjectHideFlags: 0
@@ -3594,7 +3594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16c78c02705400c40a1562a9ddaa2b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indexScene: 2
+  indexScene: 3
 --- !u!1 &1821882054
 GameObject:
   m_ObjectHideFlags: 0
