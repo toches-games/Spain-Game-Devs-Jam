@@ -67,7 +67,7 @@ public class Ghost : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("Default");
             if(anim != null)
             {
-                anim.SetFloat("WalkVelocity", 1);
+                anim.SetFloat("WalkVelocity", 0.8f);
 
             }
         }
@@ -76,7 +76,7 @@ public class Ghost : MonoBehaviour
             target = GameObject.Find("Player");
             velocity = Random.Range(GameManager.sharedIstance.minVelocityGhost, 
                                     GameManager.sharedIstance.maxVelocityGhost);
-            anim.SetFloat("WalkVelocity", velocity/10);
+            anim.SetFloat("WalkVelocity", velocity/10 - 0.3f);
 
         }
         else if (newGhostState == GhostState.finish)

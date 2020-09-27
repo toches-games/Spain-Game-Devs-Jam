@@ -26,7 +26,7 @@ public class CinematicManager : MonoBehaviour
             outroBueno.time = 12;
         }else if(outroMalo.state == PlayState.Playing)
         {
-            outroMalo.time = 12.20;
+            outroMalo.time = 13.20;
         }
     }
 }

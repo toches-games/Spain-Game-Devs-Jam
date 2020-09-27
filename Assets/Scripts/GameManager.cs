@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,6 +26,14 @@ public class GameManager : MonoBehaviour
     public int limitForNextLevel = 15;
 
     public Light2D playerLight;
+
+    [SerializeField]
+    PlayableDirector outroBueno;
+
+    [SerializeField]
+    PlayableDirector outroMalo;
+
+    public bool isPlaying = true;
 
     private void Awake()
     {
@@ -51,7 +60,7 @@ public class GameManager : MonoBehaviour
         int i = 0;
         yield return new WaitForSeconds(initialWait);
 
-        while (i < MAX_GENERATION_GHOST)
+        while (i < MAX_GENERATION_GHOST && isPlaying)
         {
             if (CheckStatePoints())
             {
@@ -69,8 +78,31 @@ public class GameManager : MonoBehaviour
             //Debug.Log(i);
         }
 
-        //TODO Win
+        PlayerWin();
 
+    }
+
+    void PlayerWin()
+    {
+        if (player.GetComponent<SpriteRenderer>().color.a >= 0.2f)
+        {
+            isPlaying = false;
+            outroBueno.Play();
+        }
+    }
+
+    IEnumerator PlayerLost()
+    {
+        
+        isPlaying = false;
+        outroMalo.Play();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        yield return new WaitForSeconds(2f);
+        Camera.main.gameObject.transform.SetPositionAndRotation(new Vector3(0, 0, -15), new Quaternion(0,0,0,0));
+
+        GameObject.Find("Game").SetActive(false);
     }
 
     public void DifficultyController(int ghostsCount, int limitForNextLevel)
@@ -131,11 +163,17 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDamage()
     {
-        StartCoroutine(DamageEffect());
+        if (isPlaying)
+        {
+            StartCoroutine(DamageEffect());
+
+            
+        }
     }
 
     IEnumerator DamageEffect()
     {
+        
         for (int i = 0; i < 5; i++)
         {
             float alpha = player.GetComponent<SpriteRenderer>().color.a;
@@ -146,6 +184,10 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         }
 
+        if (player.GetComponent<SpriteRenderer>().color.a < 0.1f)
+        {
+            StartCoroutine(PlayerLost());
+        }
     }
     
 }

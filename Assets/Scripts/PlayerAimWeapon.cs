@@ -24,6 +24,11 @@ public class PlayerAimWeapon : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!GameManager.sharedIstance.isPlaying)
+        {
+            return;
+        }
+
         Vector3 worldPoint = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
         transform.position = new Vector3(worldPoint.x, worldPoint.y, transform.position.z);
         //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
