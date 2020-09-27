@@ -3239,7 +3239,7 @@ SpriteRenderer:
   m_SortingLayerID: 141134989
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ea573c6f4c1e3994788dc252efeb91ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0e0022aea2834d447b9c0251bac11090, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3258,8 +3258,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 248419205}
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: -2.83, z: -7.4}
-  m_LocalScale: {x: 0.28143904, y: 0.25, z: 0.2814392}
+  m_LocalPosition: {x: 0, y: -7.98, z: -7.4}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.2814392}
   m_Children: []
   m_Father: {fileID: 683519237}
   m_RootOrder: 2
@@ -3275,7 +3275,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 15, z: 1.5}
+  m_Size: {x: 3.5, y: 4, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &255589418
 GameObject:
@@ -6227,13 +6227,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -15}
+  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
+  m_LocalPosition: {x: 0, y: -2.83, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
 --- !u!114 &534669906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10440,7 +10440,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798161907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.21, y: -7.61, z: -1.82}
+  m_LocalPosition: {x: 0.21, y: -12.06, z: -1.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 212354275}
@@ -23232,7 +23232,7 @@ PrefabInstance:
     - target: {fileID: 4740788474574997243, guid: 20e676d52ba6ecb42827cf27c4afd47d,
         type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 1728053247
+      value: 2080374783
       objectReference: {fileID: 0}
     - target: {fileID: 4740788474574997252, guid: 20e676d52ba6ecb42827cf27c4afd47d,
         type: 3}
@@ -23358,6 +23358,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Etapa
       objectReference: {fileID: 0}
+    - target: {fileID: 8153659198866117881, guid: 04b470b0afc8d954d90faa91e77314d3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8153659198866117882, guid: 04b470b0afc8d954d90faa91e77314d3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -23466,7 +23471,7 @@ PrefabInstance:
     - target: {fileID: 8153659198866117883, guid: 04b470b0afc8d954d90faa91e77314d3,
         type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 1728053247
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04b470b0afc8d954d90faa91e77314d3, type: 3}
