@@ -37,5 +37,20 @@ public class SoundController : MonoBehaviour
 
     [Header("Sounds")]
 
-    public StudioEventEmitter Item;
+    public StudioEventEmitter button;
+    public StudioEventEmitter womenSoffocate;
+    public StudioEventEmitter breackGlass;
+    public StudioEventEmitter clock;
+    
+
+    [Header("Enemy")]
+
+    public StudioEventEmitter ghost;
+    public StudioEventEmitter laserShoot;
+
+    [Header("Player")]
+
+    public StudioEventEmitter painHead;
+    public StudioEventEmitter shootGun;
+
 }
