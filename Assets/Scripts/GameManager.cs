@@ -131,20 +131,21 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDamage()
     {
-        //StartCoroutine(DamageEffect());
+        StartCoroutine(DamageEffect());
     }
 
     IEnumerator DamageEffect()
     {
-        for (int i = 0; i < 17; i++)
+        for (int i = 0; i < 5; i++)
         {
             float alpha = player.GetComponent<SpriteRenderer>().color.a;
-            player.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, alpha - 5);
+            player.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, alpha - 0.0667f);
 
-            playerLight.intensity = playerLight.intensity - 0.0127f;
+            playerLight.intensity = playerLight.intensity - 0.044f;
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(.1f);
         }
+
     }
     
 }
