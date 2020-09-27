@@ -9,7 +9,7 @@ public class TableManager : MonoBehaviour
     // Texto del timer en el canvas
     public Text timerText;
 
-    private readonly int initialTime = 30;
+    private readonly int initialTime = 60;
 
     private int currentTime;
 
@@ -141,7 +141,8 @@ public class TableManager : MonoBehaviour
         // Empate
         if(tableItems == groundItems)
         {
-            Debug.Log("Empate!");
+            StopCoroutine(Start());
+            StartCoroutine(Start());
         }
 
         // Gana el jugador
