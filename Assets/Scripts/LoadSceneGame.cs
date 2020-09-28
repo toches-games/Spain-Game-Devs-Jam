@@ -7,5 +7,9 @@ public class LoadSceneGame : MonoBehaviour
 
     void OnEnable(){
         SceneManager.LoadScene(indexScene);
+        if (indexScene == 4)
+        {
+            MusicController.Instance.PlayBuriel();
+        }
     }
 }

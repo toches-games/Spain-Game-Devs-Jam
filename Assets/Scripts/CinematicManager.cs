@@ -29,12 +29,16 @@ public class CinematicManager : MonoBehaviour
         if (intro.state == PlayState.Playing)
         {
             intro.time = introSkipTime;
-        }else if (outroBueno.state == PlayState.Playing)
+            MusicController.Instance.PlayMecanic();
+        }
+        else if (outroBueno.state == PlayState.Playing)
         {
             outroBueno.time = outroBuenoSkipTime;
+            MusicController.Instance.PlayBuriel();
         }else if(outroMalo.state == PlayState.Playing)
         {
             outroMalo.time = outroMaloSkipTime;
+            MusicController.Instance.PlayLoseFast();
         }
     }
 }

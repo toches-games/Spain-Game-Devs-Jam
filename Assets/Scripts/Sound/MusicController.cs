@@ -66,6 +66,11 @@ class MusicController
 
     }
 
+    public void PlayLoseFast()
+    {
+        AllMusicGame.setParameterByName("Music", 6);
+    }
+
     public void PlayRain()
     {
         AllMusicGame.setParameterByName("Rain", 1);

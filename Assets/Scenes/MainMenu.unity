@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -268,7 +268,7 @@ PrefabInstance:
     - target: {fileID: 9110498717837604046, guid: 1770550d314a24d4d90669b86bb7d66f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9110498717837604046, guid: 1770550d314a24d4d90669b86bb7d66f,
         type: 3}
@@ -309,6 +309,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110498717837604046, guid: 1770550d314a24d4d90669b86bb7d66f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110498717837604046, guid: 1770550d314a24d4d90669b86bb7d66f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110498717837604046, guid: 1770550d314a24d4d90669b86bb7d66f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: PlayBuriel
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110498717837604046, guid: 1770550d314a24d4d90669b86bb7d66f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 9110498717837604047, guid: 1770550d314a24d4d90669b86bb7d66f,
         type: 3}
@@ -1139,7 +1159,6 @@ GameObject:
   - component: {fileID: 392398436}
   - component: {fileID: 392398438}
   - component: {fileID: 392398435}
-  - component: {fileID: 392398437}
   m_Layer: 0
   m_Name: Sound
   m_TagString: Untagged
@@ -1163,6 +1182,7 @@ MonoBehaviour:
   womenSoffocate: {fileID: 819567731}
   breackGlass: {fileID: 1553267345}
   clock: {fileID: 17448749}
+  takeObject: {fileID: 0}
   ghost: {fileID: 1540348012}
   laserShoot: {fileID: 248048831}
   painHead: {fileID: 893584400}
@@ -1213,29 +1233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b513430c86b3c4583b1ff45486a03480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &392398437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 392398432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  Event: event:/Music
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 0
-  OverrideMaxDistance: 0
 --- !u!114 &392398438
 MonoBehaviour:
   m_ObjectHideFlags: 0

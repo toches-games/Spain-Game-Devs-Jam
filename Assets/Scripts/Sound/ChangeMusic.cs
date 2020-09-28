@@ -50,6 +50,11 @@ public class ChangeMusic : MonoBehaviour
         MusicController.Instance.PlayLose();
     }
 
+    public void PlayLoseFast()
+    {
+        MusicController.Instance.PlayLoseFast();
+    }
+
     public void PlayRain()
     {
         MusicController.Instance.PlayRain();

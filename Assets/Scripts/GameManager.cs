@@ -104,8 +104,9 @@ public class GameManager : MonoBehaviour
             outroBueno.Play();
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            MusicController.Instance.PlayBuriel();
-            MusicController.Instance.StopRain();
+            // MusicController.Instance.PlayBuriel();
+            //MusicController.Instance.StopRain();
+            MusicController.Instance.PlayWin2();
             MusicController.Instance.StopMecanic();
 
             yield return new WaitForSeconds(2f);
