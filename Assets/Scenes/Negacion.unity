@@ -1512,7 +1512,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursor: {fileID: 884733998}
-  speed: 5
+  openHand: {fileID: 21300000, guid: 2a8006d43d48e6f49b7356c3514ad4cf, type: 3}
+  closedHand: {fileID: 21300000, guid: a45912c7b1a38854284338adb0c231fa, type: 3}
+  speed: 3
   tablePositions: {fileID: 939819168}
   groundPositions: {fileID: 1488757310}
 --- !u!4 &664507785
@@ -1804,7 +1806,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2915d0a7292864691bb97eddd396bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursor: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 3}
+  cursor: {fileID: 21300000, guid: e65d1ea27d303b44fb1d2465df7449d8, type: 3}
+  cursor2: {fileID: 21300000, guid: 7152d07702ed5bc47b23124e786c6227, type: 3}
   tableMask:
     serializedVersion: 2
     m_Bits: 512
@@ -2461,14 +2464,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7073368, g: 0.3600481, b: 0.8773585, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -209663254022021088, guid: 2bbaee42b7f11d945ad709a997abd59a,
+    type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

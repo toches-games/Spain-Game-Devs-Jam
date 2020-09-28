@@ -9,7 +9,7 @@ public class TableManager : MonoBehaviour
     // Texto del timer en el canvas
     public Text timerText;
 
-    private readonly int initialTime = 10;
+    private readonly int initialTime = 70;
 
     private int currentTime;
 
@@ -48,10 +48,14 @@ public class TableManager : MonoBehaviour
     // Fuerza hacia arriba
     private float upForce = 1000f;
 
+    //public Texture2D cursorOne;
+    //public Texture2D cursorTwo;
 
     // Inicia el timer para el cambio de niveles
     IEnumerator Start()
     {
+        //Cursor.SetCursor(cursorOne, Vector2.zero, CursorMode.Auto);
+
         currentTime = initialTime;
 
         DisablePlayers();
@@ -67,7 +71,7 @@ public class TableManager : MonoBehaviour
 
         ExplosionForce();
         yield return new WaitForSeconds(3f);
-        iaHand.speed *= 1.4f;
+        iaHand.speed *= 1.3f;
 
         EnablePlayers();
         yield return StartCoroutine(SecondHalf());

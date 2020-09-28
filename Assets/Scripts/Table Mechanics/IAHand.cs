@@ -8,6 +8,9 @@ public class IAHand : MonoBehaviour
     // Imagen de cursor para la ia
     public Image cursor;
 
+    public Sprite openHand;
+    public Sprite closedHand;
+
     // Velocidad de desplazamiento de la ia
     [Range(1, 8)]
     public float speed = 8;
@@ -61,6 +64,8 @@ public class IAHand : MonoBehaviour
         // Si no está arrastrando algun item
         if (!dragging)
         {
+
+            cursor.sprite = openHand;
             // Si no hay un item para arrastrar, busca uno, no hace mas nada hasta que tenga un item para arrastrar
             if (!draggingItem)
             {
@@ -79,6 +84,8 @@ public class IAHand : MonoBehaviour
             // "Click" de la ia para empezar a arrastrar
             if (distance <= 0.1f && !dragging)
             {
+                cursor.sprite = closedHand;
+
                 SoundController.Instance.takeObject.Play();
                 SoundController.Instance.takeObject.EventInstance.setParameterByName("takeObject", 0);
                 item = draggingItem.GetChild(0).GetComponent<Rigidbody>();
