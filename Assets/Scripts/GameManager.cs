@@ -7,7 +7,7 @@ using UnityEngine.Playables;
 public class GameManager : MonoBehaviour
 {
     public static GameManager sharedIstance;
-    public const int MAX_GENERATION_GHOST = 45; 
+    public const int MAX_GENERATION_GHOST = 45; //45 
     public const int MAX_COUNT_GHOST = 6;
     public const float INTENSITY_DEFAULT_CIRCULO = 0.5f;
     public const float INTENSITY_HIGHT_CIRCULO = 2f;

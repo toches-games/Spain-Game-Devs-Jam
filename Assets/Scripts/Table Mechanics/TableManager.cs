@@ -9,7 +9,7 @@ public class TableManager : MonoBehaviour
     // Texto del timer en el canvas
     public Text timerText;
 
-    private readonly int initialTime = 65;
+    private readonly int initialTime = 65; //60
 
     private int currentTime;
 
