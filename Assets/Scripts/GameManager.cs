@@ -137,9 +137,9 @@ public class GameManager : MonoBehaviour
     {
         if(ghostsCount == limitForNextLevel)
         {
-            generationTime -= 0.3f;
+            generationTime -= 0.2f;
             minVelocityGhost = maxVelocityGhost;
-            maxVelocityGhost += 5;
+            maxVelocityGhost += 4;
             this.limitForNextLevel += 15;
         }
     }
