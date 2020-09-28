@@ -37,6 +37,19 @@ public class ObjectPool : MonoBehaviour
         }
         return null;
     }
+
+    public bool CheckStateObjects()
+    {
+        foreach (var obj in pooledObjects)
+        {
+            if (obj.activeInHierarchy)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
     /** Codigo para script donde se vaya a instanciar el objeto
     
     GameObject bullet = ObjectPool.SharedInstance.GetPooledObject(); 
@@ -50,6 +63,6 @@ public class ObjectPool : MonoBehaviour
     //Dentro del script del objeto a instanciar para destruirlo lo desactivamos
     gameobject.SetActive(false);
     **/
-    
+
 }
  

@@ -7,7 +7,7 @@ using UnityEngine.Playables;
 public class GameManager : MonoBehaviour
 {
     public static GameManager sharedIstance;
-    public const int MAX_GENERATION_GHOST = 45;
+    public const int MAX_GENERATION_GHOST = 10; //45
     public const int MAX_COUNT_GHOST = 6;
     public const float INTENSITY_DEFAULT_CIRCULO = 0.5f;
     public const float INTENSITY_HIGHT_CIRCULO = 2f;
@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public int minVelocityGhost = 15;
     public int maxVelocityGhost = 20;
     public int limitForNextLevel = 15;
+
+    int ghostsCount;
 
     public Light2D playerLight;
 
@@ -52,22 +54,33 @@ public class GameManager : MonoBehaviour
     {
         Camera.main.transform.position = new Vector3(0, 2.4f, -15f);
         Camera.main.transform.Rotate(new Vector3(15, 0, 0));
-        StartCoroutine(GenerationGhost(2f));
+        ghostsCount = 0;
+        StartCoroutine(GenerationGhost(4f));
+    }
+
+    private void FixedUpdate()
+    {
+        if (ghostsCount >= MAX_GENERATION_GHOST)
+        {
+            if (!ObjectPool.SharedInstance.CheckStateObjects())
+            {
+                StartCoroutine(PlayerWin());
+            }
+        }
     }
 
     public IEnumerator GenerationGhost(float initialWait)
     {
-        int i = 0;
         yield return new WaitForSeconds(initialWait);
 
-        while (i < MAX_GENERATION_GHOST && isPlaying)
+        while (ghostsCount < MAX_GENERATION_GHOST && isPlaying)
         {
             if (CheckStatePoints())
             {
                 GenerateGhost(points[RandomPoint()]);
-                i++;
+                ghostsCount++;
 
-                DifficultyController(i, limitForNextLevel);
+                DifficultyController(ghostsCount, limitForNextLevel);
 
                 //Debug.Log("Generado: " + i);
                 //Debug.Log("generationTime: " + generationTime);
@@ -78,19 +91,27 @@ public class GameManager : MonoBehaviour
             //Debug.Log(i);
         }
 
-        PlayerWin();
+        //yield return new WaitUntil(() => ObjectPool.SharedInstance.GetPooledObject() == null);
+
 
     }
 
-    void PlayerWin()
+    IEnumerator PlayerWin()
     {
         if (player.GetComponent<SpriteRenderer>().color.a >= 0.2f)
         {
             isPlaying = false;
             outroBueno.Play();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             MusicController.Instance.PlayBuriel();
             MusicController.Instance.StopRain();
             MusicController.Instance.StopMecanic();
+
+            yield return new WaitForSeconds(2f);
+            Camera.main.gameObject.transform.SetPositionAndRotation(new Vector3(0, 0, -15), new Quaternion(0, 0, 0, 0));
+
+            GameObject.Find("Game").SetActive(false);
         }
     }
 
@@ -108,13 +129,15 @@ public class GameManager : MonoBehaviour
         Camera.main.gameObject.transform.SetPositionAndRotation(new Vector3(0, 0, -15), new Quaternion(0,0,0,0));
 
         GameObject.Find("Game").SetActive(false);
+        //GameObject.Find("Instructions").SetActive(false);
+        
     }
 
     public void DifficultyController(int ghostsCount, int limitForNextLevel)
     {
         if(ghostsCount == limitForNextLevel)
         {
-            generationTime -= 0.5f;
+            generationTime -= 0.3f;
             minVelocityGhost = maxVelocityGhost;
             maxVelocityGhost += 5;
             this.limitForNextLevel += 15;
