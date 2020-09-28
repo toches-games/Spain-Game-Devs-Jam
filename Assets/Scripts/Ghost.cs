@@ -89,7 +89,7 @@ public class Ghost : MonoBehaviour
             //GameManager.sharedIstance.GenerateGhost(10,20);
             //GameManager.sharedIstance.Coroutine(Random.Range(2f, 4f), 1, 10, 20);
             ResetGameObject();
-            SoundController.Instance.ghost.EventInstance.setParameterByName("Gosth", 1);
+            
 
             gameObject.SetActive(false);
         }
@@ -149,7 +149,7 @@ public class Ghost : MonoBehaviour
         anim.SetTrigger("Dead");
         currentGhostState = GhostState.finish;
         SoundController.Instance.ghost.Play();
-
+        SoundController.Instance.ghost.EventInstance.setParameterByName("Gosth", 1);
         //anim.Play("GhostDead");
     }
 }
