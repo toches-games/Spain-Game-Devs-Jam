@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -33502,6 +33502,11 @@ PrefabInstance:
         type: 3}
       propertyPath: introSkipTime
       value: 16.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516612801454190102, guid: db9a3da293d624c4e9523f9c736eb4dc,
+        type: 3}
+      propertyPath: outroMaloSkipTime
+      value: 13.59
       objectReference: {fileID: 0}
     - target: {fileID: 5516612801454190103, guid: db9a3da293d624c4e9523f9c736eb4dc,
         type: 3}
