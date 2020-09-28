@@ -5,28 +5,36 @@ using UnityEngine.Playables;
 
 public class CinematicManager : MonoBehaviour
 {
+    [SerializeField]
     PlayableDirector intro;
+    [SerializeField]
     PlayableDirector outroBueno;
+    [SerializeField]
     PlayableDirector outroMalo;
+
+    [SerializeField]
+    double introSkipTime;
+    [SerializeField]
+    double outroBuenoSkipTime;
+    [SerializeField]
+    double outroMaloSkipTime;
 
     private void Awake()
     {
-        intro = GameObject.Find("TimeLineIntro").GetComponent<PlayableDirector>();
-        outroBueno = GameObject.Find("TimeLineOutroBueno").GetComponent<PlayableDirector>();
-        outroMalo = GameObject.Find("TimeLineOutroMalo").GetComponent<PlayableDirector>();
+        
     }
 
     public void SkipButton()
     {
         if (intro.state == PlayState.Playing)
         {
-            intro.time = 13.35;
+            intro.time = introSkipTime;
         }else if (outroBueno.state == PlayState.Playing)
         {
-            outroBueno.time = 12;
+            outroBueno.time = outroBuenoSkipTime;
         }else if(outroMalo.state == PlayState.Playing)
         {
-            outroMalo.time = 13.20;
+            outroMalo.time = outroMaloSkipTime;
         }
     }
 }

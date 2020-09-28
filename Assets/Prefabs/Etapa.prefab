@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8153659198866117882
 RectTransform:
   m_ObjectHideFlags: 0
@@ -67,16 +67,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: Etapa 2
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 70adf30ba1c390c4d9a56596034ec238, type: 2}
-  m_sharedMaterial: {fileID: 4799621822489584919, guid: 70adf30ba1c390c4d9a56596034ec238,
+  m_fontAsset: {fileID: 11400000, guid: cbf1ca8ff85e72849b67f28146dceeda, type: 2}
+  m_sharedMaterial: {fileID: -7673756742124257133, guid: cbf1ca8ff85e72849b67f28146dceeda,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291019715
+  m_fontColor: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 0
   m_fontColorGradient:
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

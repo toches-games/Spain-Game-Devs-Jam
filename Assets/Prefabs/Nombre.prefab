@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4740788474574997252
 RectTransform:
   m_ObjectHideFlags: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: b25dbfe65eb04b442960f20a3b63b14d, type: 3}
+    m_Font: {fileID: 12800000, guid: 57d14da543b4a7d4fa8e4022e5fa53fe, type: 3}
     m_FontSize: 220
     m_FontStyle: 0
     m_BestFit: 0
