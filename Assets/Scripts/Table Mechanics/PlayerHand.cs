@@ -6,8 +6,8 @@ using UnityEngineInternal;
 public class PlayerHand: MonoBehaviour
 {
     // Imagen de cursor para el jugador
-    public Sprite cursor;
-    public Sprite cursor2;
+    public Texture2D cursor;
+    public Texture2D cursor2;
 
     // Layer para que solo detecte al item al dar un solo click
     public LayerMask tableMask;
@@ -33,7 +33,7 @@ public class PlayerHand: MonoBehaviour
 
     private void Start()
     {
-        Cursor.SetCursor(cursor.texture, new Vector2(cursor.texture.width / 2, cursor.texture.height /2), CursorMode.Auto);
+        Cursor.SetCursor(cursor, new Vector2(cursor.width / 2, cursor.height /2), CursorMode.Auto);
     }
 
     private void Update()
@@ -77,7 +77,7 @@ public class PlayerHand: MonoBehaviour
         // Si mantiene el click presionado y seleccionó un objeto, entonces lo arrastra
         if(Input.GetMouseButton(0) && selected)
         {
-            Cursor.SetCursor(cursor2.texture, new Vector2(cursor.texture.width / 2, cursor.texture.height / 2), CursorMode.Auto);
+            Cursor.SetCursor(cursor2, new Vector2(cursor2.width / 2, cursor2.height / 2), CursorMode.Auto);
 
             // Posición del mouse en 3d
             Vector3 mouse3D = Input.mousePosition + Vector3.forward * Camera.main.transform.position.y;
@@ -105,7 +105,7 @@ public class PlayerHand: MonoBehaviour
         // Si deja de presionar el click
         if (Input.GetMouseButtonUp(0) && selected)
         {
-            Cursor.SetCursor(cursor.texture, new Vector2(cursor.texture.width / 2, cursor.texture.height / 2), CursorMode.Auto);
+            Cursor.SetCursor(cursor, new Vector2(cursor.width / 2, cursor.height / 2), CursorMode.Auto);
 
             // Se cambia el estado a no seleccionado
             selected = false;

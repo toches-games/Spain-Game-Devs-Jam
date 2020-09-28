@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1514,7 +1514,7 @@ MonoBehaviour:
   cursor: {fileID: 884733998}
   openHand: {fileID: 21300000, guid: 2a8006d43d48e6f49b7356c3514ad4cf, type: 3}
   closedHand: {fileID: 21300000, guid: a45912c7b1a38854284338adb0c231fa, type: 3}
-  speed: 3
+  speed: 2.5
   tablePositions: {fileID: 939819168}
   groundPositions: {fileID: 1488757310}
 --- !u!4 &664507785
@@ -1806,8 +1806,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2915d0a7292864691bb97eddd396bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursor: {fileID: 21300000, guid: e65d1ea27d303b44fb1d2465df7449d8, type: 3}
-  cursor2: {fileID: 21300000, guid: 7152d07702ed5bc47b23124e786c6227, type: 3}
+  cursor: {fileID: 2800000, guid: e65d1ea27d303b44fb1d2465df7449d8, type: 3}
+  cursor2: {fileID: 2800000, guid: 7152d07702ed5bc47b23124e786c6227, type: 3}
   tableMask:
     serializedVersion: 2
     m_Bits: 512

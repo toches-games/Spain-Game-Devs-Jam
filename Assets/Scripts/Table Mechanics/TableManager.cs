@@ -9,7 +9,7 @@ public class TableManager : MonoBehaviour
     // Texto del timer en el canvas
     public Text timerText;
 
-    private readonly int initialTime = 65;
+    private readonly int initialTime = 10; //65
 
     private int currentTime;
 
@@ -119,6 +119,7 @@ public class TableManager : MonoBehaviour
         {
             SoundController.Instance.clock.Stop();
             Cursor.lockState = CursorLockMode.None;
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 
         }
     }

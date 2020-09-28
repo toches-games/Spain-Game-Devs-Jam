@@ -15,6 +15,7 @@ public class PlayerAimWeapon : MonoBehaviour
 
     void Start()
     {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
         //bolt = FindObjectOfType<LightningBoltScript>();
