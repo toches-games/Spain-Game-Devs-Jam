@@ -33035,6 +33035,8 @@ PlayableDirector:
     value: {fileID: 1072019320}
   - key: {fileID: 3046991863717583191, guid: 45994b924577012458ece107fd6869cf, type: 2}
     value: {fileID: 86529414}
+  - key: {fileID: -2990812158801144999, guid: 45994b924577012458ece107fd6869cf, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &2141569559
@@ -33633,7 +33635,7 @@ PrefabInstance:
     - target: {fileID: 8153659198866117883, guid: 04b470b0afc8d954d90faa91e77314d3,
         type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 12829635
+      value: 1187234755
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04b470b0afc8d954d90faa91e77314d3, type: 3}
