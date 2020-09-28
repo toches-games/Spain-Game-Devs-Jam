@@ -9,7 +9,7 @@ public class TableManager : MonoBehaviour
     // Texto del timer en el canvas
     public Text timerText;
 
-    private readonly int initialTime = 10; //65
+    private readonly int initialTime = 65;
 
     private int currentTime;
 
@@ -73,7 +73,7 @@ public class TableManager : MonoBehaviour
 
         ExplosionForce();
         yield return new WaitForSeconds(3f);
-        iaHand.speed *= 1.3f;
+        iaHand.speed *= 1.2f;
 
         EnablePlayers();
         yield return StartCoroutine(SecondHalf());
