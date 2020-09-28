@@ -68,15 +68,19 @@ public class TableManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         CheckGame();
+
+        
     }
 
     // Inicia el timer
     IEnumerator FirstHalf()
     {
         int half = currentTime / 2;
-        
+        SoundController.Instance.clock.Play();
+        MusicController.Instance.PlayMecanic();
+
         InstantiateItems();
-        ExplosionForce();
+        //ExplosionForce();
 
         while (currentTime >= half)
         {
@@ -99,9 +103,14 @@ public class TableManager : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
         }
+
+        if (currentTime ==0)
+        {
+            SoundController.Instance.clock.Stop();
+        }
     }
 
-    private void ExplosionForce()
+    /*private void ExplosionForce()
     {
         Vector3 explosionPosition = transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPosition, radius);
@@ -114,7 +123,7 @@ public class TableManager : MonoBehaviour
                 rig.AddExplosionForce(power, explosionPosition, radius, upForce, ForceMode.Impulse);
             }
         }
-    }
+    }*/
 
     // Pone los items sobre la mesa, las posiciones en la mesa deben ser iguales o mayores que la cantidad de items
     // ya que es un item para cada posición, si hay menos posiciones no saldria del ciclo while ya que no encontraria
@@ -134,11 +143,11 @@ public class TableManager : MonoBehaviour
             itemTemp.GetComponent<Item>().Place = targetPosition.GetSiblingIndex();
             
             // Posicion random al suelo
-            Transform targetPositionGround = groundPositions.GetChild(Random.Range(0, groundPositions.childCount));
+            //Transform targetPositionGround = groundPositions.GetChild(Random.Range(0, groundPositions.childCount));
 
-            while(targetPositionGround.childCount > 0) targetPositionGround = groundPositions.GetChild(Random.Range(0, groundPositions.childCount));
-
-            itemTemp.SetParent(targetPositionGround);
+            //while(targetPositionGround.childCount > 0) targetPositionGround = groundPositions.GetChild(Random.Range(0, groundPositions.childCount));
+             
+            itemTemp.SetParent(targetPosition);
         }
     }
 
@@ -183,6 +192,7 @@ public class TableManager : MonoBehaviour
         {
             goodOutroCanvas.SetActive(true);
             goodOutro.SetActive(true);
+            MusicController.Instance.PlayWin1();
         }
 
         // Gana la ia
@@ -190,6 +200,7 @@ public class TableManager : MonoBehaviour
         {
             badOutroCanvas.SetActive(true);
             badOutro.SetActive(true);
+            MusicController.Instance.PlayLose();
         }
     }
 

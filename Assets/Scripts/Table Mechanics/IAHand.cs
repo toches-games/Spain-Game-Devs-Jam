@@ -46,9 +46,10 @@ public class IAHand : MonoBehaviour
     Transform RandomTargetDropItemPosition()
     {
         Transform targetDropItemPosition = groundPositions.GetChild(Random.Range(0, groundPositions.childCount));
-
+      
         if (targetDropItemPosition.childCount == 1)
         {
+           
             targetDropItemPosition = null;
         }
 
@@ -78,6 +79,8 @@ public class IAHand : MonoBehaviour
             // "Click" de la ia para empezar a arrastrar
             if (distance <= 0.1f && !dragging)
             {
+                SoundController.Instance.takeObject.Play();
+                SoundController.Instance.takeObject.EventInstance.setParameterByName("takeObject", 0);
                 item = draggingItem.GetChild(0).GetComponent<Rigidbody>();
                 //item.transform.SetParent(null);
                 item.transform.GetComponent<Item>().Draggable = false;

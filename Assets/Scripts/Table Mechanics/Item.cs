@@ -28,8 +28,9 @@ public class Item : MonoBehaviour
         {
             float distance = Vector3.Distance(GroundPosition.position, Rig.position);
             Rig.MovePosition(Vector3.MoveTowards(Rig.position, GroundPosition.position, distance * 8f * Time.deltaTime));
+            
 
-            if(distance <= 0.1f)
+            if (distance <= 0.1f)
             {
                 incorrect = false;
                 Draggable = true;
@@ -43,6 +44,8 @@ public class Item : MonoBehaviour
         // Si se pone en un lugar incorrecto sobre la mesa
         if (other.CompareTag("Table Position") && other.transform.GetSiblingIndex() != Place && !Dragging)
         {
+            SoundController.Instance.takeObject.Play();
+            SoundController.Instance.takeObject.EventInstance.setParameterByName("takeObject", 2);
             incorrect = true;
             Draggable = false;
             return;
@@ -53,6 +56,8 @@ public class Item : MonoBehaviour
         if (other.CompareTag("Table Position") && !Dragging)
         {
             // Si el item está en un lugar correcto
+            SoundController.Instance.takeObject.Play();
+            SoundController.Instance.takeObject.EventInstance.setParameterByName("takeObject", 1);
             Draggable = false;
             other.enabled = false;
             transform.position = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
@@ -61,7 +66,9 @@ public class Item : MonoBehaviour
     }
 
     // Si golpea con el suelo o mesa
-    private void OnCollisionEnter(Collision other) {
-        
+    private void OnCollisionEnter(Collision other)
+    {
+        SoundController.Instance.takeObject.Play();
+        SoundController.Instance.takeObject.EventInstance.setParameterByName("takeObject", 1);
     }
 }

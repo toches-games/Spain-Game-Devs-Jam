@@ -61,6 +61,8 @@ public class Ghost : MonoBehaviour
 
         if (newGhostState == GhostState.generated)
         {
+            SoundController.Instance.ghost.Play();
+            SoundController.Instance.ghost.EventInstance.setParameterByName("Gosth", 0);
             target = initialPoint;
             initialPoint.GetComponent<Point>().SetState(false);
             velocity = GameManager.sharedIstance.minVelocityGhost;
@@ -87,6 +89,7 @@ public class Ghost : MonoBehaviour
             //GameManager.sharedIstance.GenerateGhost(10,20);
             //GameManager.sharedIstance.Coroutine(Random.Range(2f, 4f), 1, 10, 20);
             ResetGameObject();
+            SoundController.Instance.ghost.EventInstance.setParameterByName("Gosth", 1);
 
             gameObject.SetActive(false);
         }
@@ -145,6 +148,7 @@ public class Ghost : MonoBehaviour
         anim.SetFloat("DeadVelocity", 1.8f);
         anim.SetTrigger("Dead");
         currentGhostState = GhostState.finish;
+        SoundController.Instance.ghost.Play();
 
         //anim.Play("GhostDead");
     }

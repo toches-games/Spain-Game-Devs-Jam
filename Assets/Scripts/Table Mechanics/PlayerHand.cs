@@ -28,6 +28,8 @@ public class PlayerHand: MonoBehaviour
     //Guarda el item que selecionó
     private RaycastHit item;
 
+    bool sound = false;
+
     private void Start()
     {
         //Cursor.SetCursor(cursor.texture, new Vector2(cursor.texture.width / 2, cursor.texture.height /2), CursorMode.Auto);
@@ -43,6 +45,13 @@ public class PlayerHand: MonoBehaviour
             // Si seleccionó un item
             if(Physics.Raycast(ray, out item, Mathf.Infinity, itemMask))
             {
+                sound = true;
+                if (!SoundController.Instance.takeObject.IsPlaying() && sound == true)
+                {
+                    SoundController.Instance.takeObject.Play();
+                    SoundController.Instance.takeObject.EventInstance.setParameterByName("takeObject", 0);
+                    sound = false;
+                }
                 // Si el item está en la posición correcta, hacemos que no se pueda arrastrar
                 if (!item.transform.GetComponent<Item>().Draggable)
                 {
@@ -67,6 +76,9 @@ public class PlayerHand: MonoBehaviour
         // Si mantiene el click presionado y seleccionó un objeto, entonces lo arrastra
         if(Input.GetMouseButton(0) && selected)
         {
+         
+
+           
             // Posición del mouse en 3d
             Vector3 mouse3D = Input.mousePosition + Vector3.forward * Camera.main.transform.position.y;
 

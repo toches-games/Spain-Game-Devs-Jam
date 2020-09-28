@@ -42,6 +42,7 @@ public class PlayerAimWeapon : MonoBehaviour
         {
             RaycastHit hit = BulletRaycast.Shoot(origin, dir, 200);
             //BulletRaycast.Shoot(ray.origin, ray.direction, 200);
+            SoundController.Instance.laserShoot.Play();
 
             if(hit.collider != null)
             {
