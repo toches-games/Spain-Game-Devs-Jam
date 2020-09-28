@@ -88,6 +88,9 @@ public class GameManager : MonoBehaviour
         {
             isPlaying = false;
             outroBueno.Play();
+            MusicController.Instance.PlayBuriel();
+            MusicController.Instance.StopRain();
+            MusicController.Instance.StopMecanic();
         }
     }
 
@@ -98,6 +101,8 @@ public class GameManager : MonoBehaviour
         outroMalo.Play();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        MusicController.Instance.PlayLose();
+        MusicController.Instance.StopMecanic();
 
         yield return new WaitForSeconds(2f);
         Camera.main.gameObject.transform.SetPositionAndRotation(new Vector3(0, 0, -15), new Quaternion(0,0,0,0));

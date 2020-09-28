@@ -41,6 +41,7 @@ public class SoundController : MonoBehaviour
     public StudioEventEmitter womenSoffocate;
     public StudioEventEmitter breackGlass;
     public StudioEventEmitter clock;
+    public StudioEventEmitter takeObject;
     
 
     [Header("Enemy")]
